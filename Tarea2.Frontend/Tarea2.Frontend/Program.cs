@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Tarea2.Frontend.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<Tarea2FrontendContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Tarea2FrontendContext") ?? throw new InvalidOperationException("Connection string 'Tarea2FrontendContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
